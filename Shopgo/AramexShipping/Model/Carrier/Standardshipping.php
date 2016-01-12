@@ -24,6 +24,8 @@ class Standardshipping extends AbstractCarrierOnline implements \Magento\Shippin
 
     protected $_productCollectionFactory;
 
+    protected $_rateServiceWsdl;
+
     /**
      * @param \Magento\Framework\App\Config\ScopeConfigInterface $scopeConfig
      * @param \Magento\Quote\Model\Quote\Address\RateResult\ErrorFactory $rateErrorFactory
@@ -88,9 +90,21 @@ class Standardshipping extends AbstractCarrierOnline implements \Magento\Shippin
             $stockRegistry,
             $data
         );
+        $wsdlPath = $configReader->getModuleDir(Dir::MODULE_ETC_DIR, 'Shopgo_AramexShipping') . '/wsdl/';
+        $this->_rateServiceWsdl = $wsdlPath . 'aramex-rates-calculator-wsdl.wsdl';
     }
 
-    
+    protected function _createSoapClient($wsdl, $trace = false)
+    {
+        $client = new \SoapClient($wsdl, ['trace' => $trace]);
+        return $client;
+    }
+
+    protected function _createRateSoapClient()
+    {
+        return $this->_createSoapClient($this->_rateServiceWsdl);
+    }
+
     public function collectRates(RateRequest $request)
     {
 
