@@ -29,7 +29,7 @@ class Standardshipping extends AbstractCarrierOnline implements \Magento\Shippin
     /**
      * @param \Magento\Framework\App\Config\ScopeConfigInterface $scopeConfig
      * @param \Magento\Quote\Model\Quote\Address\RateResult\ErrorFactory $rateErrorFactory
-     * @param \Psr\Log\LoggerInterface $logger
+     * @param \Shopgo\AramexShipping\Helper\Logger\Logger $logger
      * @param Security $xmlSecurity
      * @param \Magento\Shipping\Model\Simplexml\ElementFactory $xmlElFactory
      * @param \Magento\Shipping\Model\Rate\ResultFactory $rateFactory
@@ -52,7 +52,7 @@ class Standardshipping extends AbstractCarrierOnline implements \Magento\Shippin
     public function __construct(
         \Magento\Framework\App\Config\ScopeConfigInterface $scopeConfig,
         \Magento\Quote\Model\Quote\Address\RateResult\ErrorFactory $rateErrorFactory,
-        \Psr\Log\LoggerInterface $logger,
+        \Shopgo\AramexShipping\Helper\Logger\Logger $logger,
         Security $xmlSecurity,
         \Magento\Shipping\Model\Simplexml\ElementFactory $xmlElFactory,
         \Magento\Shipping\Model\Rate\ResultFactory $rateFactory,
@@ -70,6 +70,7 @@ class Standardshipping extends AbstractCarrierOnline implements \Magento\Shippin
         \Magento\Catalog\Model\ResourceModel\Product\CollectionFactory $productCollectionFactory,
         array $data = []
     ) {
+        $this->_logger = $logger;
         $this->_storeManager = $storeManager;
         $this->_productCollectionFactory = $productCollectionFactory;
         parent::__construct(
