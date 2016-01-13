@@ -107,12 +107,59 @@ class Standardshipping extends AbstractCarrierOnline implements \Magento\Shippin
 
     public function collectRates(RateRequest $request)
     {
+        if (!$this->canCollectRates()) {
+            return $this->getErrorMessage();
+        }
+
+        $requestAramex = clone $request;
+        $this->setRequest($requestAramex);
 
     }
 
     public function setRequest(\Magento\Framework\DataObject $request)
     {
+
+        $this->_request = $request;
+        $this->setStore($request->getStoreId());
+
+        $r = new \Magento\Framework\DataObject();
         
+        $r->setUserName($this->getConfigData('username'));
+        $r->setPassword($this->getConfigData('password'));
+        $r->setAccountNumber($this->getConfigData('accountnumber'));
+        $r->setAccountEntity($this->getConfigData('accountentity'));
+        $r->setAccountPin($this->getConfigData('accountpin'));
+        $r->setAccountCountryCode($this->getConfigData('accountcountrycode'));
+
+        $origCountry = $this->_scopeConfig->getValue(
+                        \Magento\Sales\Model\Order\Shipment::XML_PATH_STORE_COUNTRY_ID,
+                        \Magento\Store\Model\ScopeInterface::SCOPE_STORE,
+                        $request->getStoreId()
+                     );
+
+        $r->setOrigCountry($this->_countryFactory->create()->load($origCountry)->getData('iso2_code'));
+
+        $r->setOrigCity(
+                $this->_scopeConfig->getValue(
+                    \Magento\Sales\Model\Order\Shipment::XML_PATH_STORE_CITY,
+                    \Magento\Store\Model\ScopeInterface::SCOPE_STORE,
+                    $request->getStoreId()
+                )
+            );
+
+        $destCountry = $request->getDestCountryId();
+
+        $r->setDestCountry($this->_countryFactory->create()->load($destCountry)->getData('iso2_code'));
+        $r->setDestCity("Amman");
+        //$r->setDestCity($request->getDestCity());
+
+        $r->setProductGroup('EXP');
+        $r->setProductType($this->getConfigData('producttype'));
+
+        
+        $this->setRawRequest($r);
+
+        return $this;
     }
 
     public function getRequestParam()
