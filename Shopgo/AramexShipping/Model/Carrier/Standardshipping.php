@@ -68,11 +68,15 @@ class Standardshipping extends AbstractCarrierOnline implements \Magento\Shippin
         \Magento\Store\Model\StoreManagerInterface $storeManager,
         \Magento\Framework\Module\Dir\Reader $configReader,
         \Magento\Catalog\Model\ResourceModel\Product\CollectionFactory $productCollectionFactory,
+        \Shopgo\AramexShipping\Helper\Data $helper,
         array $data = []
     ) {
-        $this->_logger = $logger;
-        $this->_storeManager = $storeManager;
+
+        $this->_helper                   = $helper;
+        $this->_logger                   = $logger;
+        $this->_storeManager             = $storeManager;
         $this->_productCollectionFactory = $productCollectionFactory;
+
         parent::__construct(
             $scopeConfig,
             $rateErrorFactory,
@@ -178,7 +182,7 @@ class Standardshipping extends AbstractCarrierOnline implements \Magento\Shippin
                 $weight += $item->getWeight()*$item->getQty();
             }
         }
-        
+
         return array($pices, $weight);
     }
 
