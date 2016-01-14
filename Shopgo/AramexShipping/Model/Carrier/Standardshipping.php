@@ -163,6 +163,25 @@ class Standardshipping extends AbstractCarrierOnline implements \Magento\Shippin
         return $this;
     }
 
+    public function getOrderInfo()
+    {
+
+        $request = $this->_request;
+        $pices   = 0;
+        $weight  = 0;
+
+        foreach ($request->getAllItems() as $item) {
+            if ($item->getProduct()->isVirtual()) {
+                continue;
+            }else{
+                $pices ++;
+                $weight += $item->getWeight()*$item->getQty();
+            }
+        }
+        
+        return array($pices, $weight);
+    }
+
     public function getRequestParam()
     {
         
