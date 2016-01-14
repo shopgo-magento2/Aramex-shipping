@@ -119,6 +119,11 @@ class Standardshipping extends AbstractCarrierOnline implements \Magento\Shippin
         $requestAramex = clone $request;
         $this->setRequest($requestAramex);
 
+        $params = $this->buildAramexReq();
+        $this->sendAramexReq($params);
+
+
+
     }
 
     public function setRequest(\Magento\Framework\DataObject $request)
@@ -166,6 +171,64 @@ class Standardshipping extends AbstractCarrierOnline implements \Magento\Shippin
 
         return $this;
     }
+     public function buildAramexReq(){
+
+        $r      = $this->_rawRequest;
+
+        $pices  = $this->getOrderInfo()[0];
+        $weight = $this->getOrderInfo()[1];
+
+        $params = array(
+            'ClientInfo'  => array(
+                            'AccountCountryCode'    => $r->getAccountCountryCode(),
+                            'AccountEntity'         => $r->getAccountEntity(),
+                            'AccountNumber'         => $r->getAccountNumber(),
+                            'AccountPin'            => $r->getAccountPin(),
+                            'UserName'              => $r->getUserName(),
+                            'Password'              => $r->getPassword(),
+                            'Version'               => 'v1.0'
+                        ),
+                                    
+            'Transaction' => array(
+                            'Reference1'            => '001' 
+                        ),
+                                    
+            'OriginAddress' => array(
+                            'Line1'                 => 'NA',
+                            'City'                  => $r->getOrigCity(),
+                            'CountryCode'           => $r->getOrigCountry(),
+                        ),
+                                    
+            'DestinationAddress' => array(
+                            'Line1'                 => 'NA',
+                            'City'                  => $r->getDestCity(),
+                            'CountryCode'           => $r->getDestCountry(),
+                        ),
+            'ShipmentDetails' => array(
+                            'PaymentType'            => 'C',
+                            'ProductGroup'           => $r->getProductGroup(),
+                            'ProductType'            => $r->getProductType(),
+                            'ActualWeight'           => array('Value' => $weight+1, 'Unit' => 'KG'),
+                            'ChargeableWeight'       => array('Value' => $weight+1, 'Unit' => 'KG'),
+                            'NumberOfPieces'         => $pices
+                        )
+        );
+            return $params;
+    }
+
+    public function sendAramexReq($params){
+
+        $client  = $this->_createRateSoapClient();
+        $results = $client->CalculateRate($params);
+
+        if($results->HasErrors) {
+            $this->_result = false;
+        }
+        else{
+            $this->_result = $results->TotalAmount;
+        }
+        return $this;
+    }
 
     public function getOrderInfo()
     {
@@ -177,7 +240,8 @@ class Standardshipping extends AbstractCarrierOnline implements \Magento\Shippin
         foreach ($request->getAllItems() as $item) {
             if ($item->getProduct()->isVirtual()) {
                 continue;
-            }else{
+            }
+            else{
                 $pices ++;
                 $weight += $item->getWeight()*$item->getQty();
             }
