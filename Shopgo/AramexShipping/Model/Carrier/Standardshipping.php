@@ -26,6 +26,8 @@ class Standardshipping extends AbstractCarrierOnline implements \Magento\Shippin
 
     protected $_rateServiceWsdl;
 
+    protected $directoryHelper;
+
     /**
      * @param \Magento\Framework\App\Config\ScopeConfigInterface $scopeConfig
      * @param \Magento\Quote\Model\Quote\Address\RateResult\ErrorFactory $rateErrorFactory
@@ -71,7 +73,7 @@ class Standardshipping extends AbstractCarrierOnline implements \Magento\Shippin
         \Shopgo\AramexShipping\Helper\Data $helper,
         array $data = []
     ) {
-
+        $this->directoryHelper           = $directoryData;
         $this->_helper                   = $helper;
         $this->_logger                   = $logger;
         $this->_storeManager             = $storeManager;
@@ -280,10 +282,10 @@ class Standardshipping extends AbstractCarrierOnline implements \Magento\Shippin
          $rate->setMethodTitle($this->getConfigData('title'));
          $rate->setCarrierTitle($this->getConfigData('title'));
 
-         $fromCurrency = $resultQuote->CurrencyCode;
-         $toCurrency   = $this->_storeManager->getStore()->getBaseCurrencyCode();
+         $aramexCurrency = $resultQuote->CurrencyCode;
+         $storeCurrency  = $this->directoryHelper->getBaseCurrencyCode();
 
-         $price        = $this->_helper->converCurrency($fromCurrency,$toCurrency,$price);
+         $price          = $this->_helper->converCurrency($aramexCurrency,$storeCurrency,$price);
         
          $rate->setCost($price);
          $rate->setPrice($price);
