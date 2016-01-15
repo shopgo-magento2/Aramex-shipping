@@ -122,8 +122,14 @@ class Standardshipping extends AbstractCarrierOnline implements \Magento\Shippin
         $params = $this->buildAramexReq();
         $this->sendAramexReq($params);
 
+        $rate       = $this->_rateFactory->create();
+        $resultQuote = $this->_result;
 
-
+        if($resultQuote == false) {
+            return $this->failAramex();
+        }else{
+            return $this->addAramexRate($result, $resultQuote);
+        }
     }
 
     public function setRequest(\Magento\Framework\DataObject $request)
@@ -194,13 +200,13 @@ class Standardshipping extends AbstractCarrierOnline implements \Magento\Shippin
                         ),
                                     
             'OriginAddress' => array(
-                            'Line1'                 => 'NA',
+                            'Line1'                 => 'Originstreet',
                             'City'                  => $r->getOrigCity(),
                             'CountryCode'           => $r->getOrigCountry(),
                         ),
                                     
             'DestinationAddress' => array(
-                            'Line1'                 => 'NA',
+                            'Line1'                 => 'DestinationStree',
                             'City'                  => $r->getDestCity(),
                             'CountryCode'           => $r->getDestCountry(),
                         ),
@@ -250,15 +256,41 @@ class Standardshipping extends AbstractCarrierOnline implements \Magento\Shippin
         return array($pices, $weight);
     }
 
-    public function getRequestParam()
+    public function failAramex($result)
     {
-        
+        $error = $this->_rateErrorFactory->create();
+
+        $error->setCarrier($this->_code);
+        $error->setCarrierTitle($this->getConfigData('title'));
+        $error->setErrorMessage($this->getConfigData('specificerrmsg'));
+
+        $result->append($error);
+
+        return $result;
     }
 
-    public function getResult()
-    {
+    public function addAramexRate($result, $resultQuote)
+     {
+         $rate  = $this->_rateMethodFactory->create();
+         $price = $resultQuote->Value;
+
+         $rate->setCarrier($this->_code);
+         $rate->setMethod($this->_code);
+
+         $rate->setMethodTitle($this->getConfigData('title'));
+         $rate->setCarrierTitle($this->getConfigData('title'));
+
+         $fromCurrency = $resultQuote->CurrencyCode;
+         $toCurrency   = $this->_storeManager->getStore()->getBaseCurrencyCode();
+
+         $price        = $this->_helper->converCurrency($fromCurrency,$toCurrency,$price);
         
-    }
+         $rate->setCost($price);
+         $rate->setPrice($price);
+         $result->append($rate);
+
+         return $result;
+     }
 
     public function getAllowedMethods()
     {
