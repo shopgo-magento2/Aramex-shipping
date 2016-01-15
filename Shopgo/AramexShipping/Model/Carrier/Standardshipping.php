@@ -226,8 +226,15 @@ class Standardshipping extends AbstractCarrierOnline implements \Magento\Shippin
 
     public function sendAramexReq($params){
 
+
+        if ($this->_helper->getDebugStatus())
+            $this->_logger->info(print_r($params,true));
+
         $client  = $this->_createRateSoapClient();
         $results = $client->CalculateRate($params);
+
+        if ($this->_helper->getDebugStatus())
+            $this->_logger->info(print_r($results,true));
 
         if($results->HasErrors) {
             $this->_result = false;
