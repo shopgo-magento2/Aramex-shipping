@@ -1,5 +1,5 @@
-
 <?php
+
 namespace Shopgo\AramexShipping\Helper\Logger;
 
 use Monolog\Logger;

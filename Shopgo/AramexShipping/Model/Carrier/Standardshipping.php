@@ -128,9 +128,9 @@ class Standardshipping extends AbstractCarrierOnline implements \Magento\Shippin
         $resultQuote = $this->_result;
 
         if($resultQuote == false) {
-            return $this->failAramex($result);
+            return $this->failAramex($rate);
         }else{
-            return $this->addAramexRate($result, $resultQuote);
+            return $this->addAramexRate($rate, $resultQuote);
         }
     }
 
