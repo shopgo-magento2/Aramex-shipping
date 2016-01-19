@@ -171,6 +171,8 @@ class Standardshipping extends AbstractCarrierOnline implements \Magento\Shippin
         $r->setDestCity("Amman");
         //$r->setDestCity($request->getDestCity());
 
+        $r->setDestPostal($request->getDestPostcode());
+
         $r->setProductGroup('EXP');
         $r->setProductType($this->getConfigData('producttype'));
 
@@ -211,6 +213,7 @@ class Standardshipping extends AbstractCarrierOnline implements \Magento\Shippin
                             'Line1'                 => 'DestinationStree',
                             'City'                  => $r->getDestCity(),
                             'CountryCode'           => $r->getDestCountry(),
+                            'PostCode'              => $r->getDestPostal(),
                         ),
             'ShipmentDetails' => array(
                             'PaymentType'            => 'C',
