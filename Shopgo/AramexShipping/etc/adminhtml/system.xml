@@ -49,12 +49,9 @@
                     <depends> <field id="active">1</field> </depends>
                 </field>
 
-                <field id="checkaccount" translate="comment" type="button" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
-                    <comment>
-                        Aramex Account's Country Code, Entity, Number and PIN can be obtained by contacting Aramex.
-                        Note: Shipping settings origin entries (Stores > Configuration > Sales > Shipping Settings > Origin) must be filled,
-                        otherwise the extension will not function properly.
-                    </comment>
+                <field id="aramex_account_checker" translate="label" type="button" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Check Account</label>
+                    <frontend_model>Shopgo\AramexShipping\Block\System\Config\Button\CheckAccountButton</frontend_model>
                     <depends> <field id="active">1</field> </depends>
                 </field>
 
