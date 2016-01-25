@@ -9,6 +9,8 @@
                 <model>Shopgo\AramexShipping\Model\Carrier\Standardshipping</model>
                 <title>Aramex Shipping</title>
                 <specificerrmsg>This shipping method is not available. To use this shipping method, please contact us.</specificerrmsg>
+                <is_online>1</is_online>
+                <max_package_weight>100</max_package_weight>
             </aramex>
         </carriers>
     </default>

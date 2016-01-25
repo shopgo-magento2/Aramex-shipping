@@ -49,6 +49,5 @@ class CheckAccountButton extends \Magento\Config\Block\System\Config\Form\Field
      public function checkAccount()
     {
         return $this->_helper->checkAccount();
-
     }
 }
