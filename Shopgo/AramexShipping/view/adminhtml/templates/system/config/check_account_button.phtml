@@ -1,0 +1,12 @@
+
+<script>
+    require([
+        'prototype'
+    ], function () {
+        window.checkAramexAccount = function(){
+            window.alert('<?php echo $this->checkAccount() ?>');
+        }
+    });
+</script>
+
+<?php echo $block->getButtonHtml() ?>
