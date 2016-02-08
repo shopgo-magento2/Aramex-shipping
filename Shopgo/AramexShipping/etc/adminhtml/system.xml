@@ -14,6 +14,10 @@
                     <tooltip>This is the method’s name that the customer will see in the checkout page.</tooltip>
                     <depends> <field id="active">1</field> </depends>
                 </field>
+                <field id="method_title" translate="label" type="text" sortOrder="2" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Method Title</label>
+                    <depends> <field id="active">1</field> </depends>
+                </field>
 
                 <field id="username" translate="label" type="text" sortOrder="3" showInDefault="1" showInWebsite="1" showInStore="1">
                     <label>User Name</label>
