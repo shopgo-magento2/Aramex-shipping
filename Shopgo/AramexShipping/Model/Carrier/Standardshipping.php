@@ -289,7 +289,7 @@ class Standardshipping extends AbstractCarrierOnline implements \Magento\Shippin
          $rate->setCarrier($this->_code);
          $rate->setMethod($this->_code);
 
-         $rate->setMethodTitle($this->getConfigData('title'));
+         $rate->setMethodTitle($this->getConfigData('method_title'));
          $rate->setCarrierTitle($this->getConfigData('title'));
 
          $aramexCurrency = $resultQuote->CurrencyCode;
