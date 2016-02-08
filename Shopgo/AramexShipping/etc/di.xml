@@ -1,6 +1,11 @@
 <?xml version="1.0"?>
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:noNamespaceSchemaLocation="../../../../../lib/internal/Magento/Framework/ObjectManager/etc/config.xsd">
+
+    <preference for="Shopgo\AramexShipping\Api\Data\Rewrite\AramexShippingMethodManagementInterface" type="Shopgo\AramexShipping\Model\Rewrite\AramexShippingMethodManagement" />
+    <preference for="Shopgo\AramexShipping\Api\Data\Rewrite\AramexEstimateAddressInterface" type="Shopgo\AramexShipping\Model\Rewrite\AramexEstimateAddress" />
+    <preference for="Shopgo\AramexShipping\Api\Data\Rewrite\AramexGuestShippingMethodManagementInterface" type="Shopgo\AramexShipping\Model\Rewrite\AramexGuestShippingMethodManagement" />
+
     <type name="Shopgo\AramexShipping\Helper\Logger\Handler">
         <arguments>
             <argument name="filesystem" xsi:type="object">Magento\Framework\Filesystem\Driver\File</argument>
