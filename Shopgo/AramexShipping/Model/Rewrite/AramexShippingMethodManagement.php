@@ -3,11 +3,11 @@
  * Copyright © 2015 Magento. All rights reserved.
  * See COPYING.txt for license details.
  */
-namespace Shopgo\AramexShipping\Model\Rewrite;
+namespace ShopGo\AramexShipping\Model\Rewrite;
 
 use Magento\Quote\Model\ShippingMethodManagement;
-use Shopgo\AramexShipping\Api\Data\Rewrite\AramexEstimateAddressInterface;
-use Shopgo\AramexShipping\Api\Data\Rewrite\AramexShippingMethodManagementInterface;
+use ShopGo\AramexShipping\Api\Data\Rewrite\AramexEstimateAddressInterface;
+use ShopGo\AramexShipping\Api\Data\Rewrite\AramexShippingMethodManagementInterface;
 
 class AramexShippingMethodManagement extends ShippingMethodManagement implements AramexShippingMethodManagementInterface
 

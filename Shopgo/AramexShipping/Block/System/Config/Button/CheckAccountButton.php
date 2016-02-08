@@ -1,9 +1,9 @@
 <?php
 
-namespace Shopgo\AramexShipping\Block\System\Config\Button;
+namespace ShopGo\AramexShipping\Block\System\Config\Button;
 
 use Magento\Framework\App\Config\ScopeConfigInterface;
-use Shopgo\AramexShipping\Helper\Data;
+use ShopGo\AramexShipping\Helper\Data;
 
 class CheckAccountButton extends \Magento\Config\Block\System\Config\Form\Field
 {

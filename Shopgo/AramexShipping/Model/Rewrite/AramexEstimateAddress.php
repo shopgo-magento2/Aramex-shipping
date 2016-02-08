@@ -4,10 +4,10 @@
  * See COPYING.txt for license details.
  */
 
-namespace Shopgo\AramexShipping\Model\Rewrite;
+namespace ShopGo\AramexShipping\Model\Rewrite;
 
 use Magento\Quote\Model\EstimateAddress;
-use Shopgo\AramexShipping\Api\Data\Rewrite\AramexEstimateAddressInterface;
+use ShopGo\AramexShipping\Api\Data\Rewrite\AramexEstimateAddressInterface;
 
 
 class AramexEstimateAddress extends EstimateAddress implements AramexEstimateAddressInterface

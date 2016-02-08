@@ -1,6 +1,6 @@
 <?php
 
-namespace Shopgo\AramexShipping\Model\Carrier;
+namespace ShopGo\AramexShipping\Model\Carrier;
 
 use Magento\Framework\Module\Dir;
 use Magento\Quote\Model\Quote\Address\RateResult\Error;
@@ -31,7 +31,7 @@ class Standardshipping extends AbstractCarrierOnline implements \Magento\Shippin
     /**
      * @param \Magento\Framework\App\Config\ScopeConfigInterface $scopeConfig
      * @param \Magento\Quote\Model\Quote\Address\RateResult\ErrorFactory $rateErrorFactory
-     * @param \Shopgo\AramexShipping\Helper\Logger\Logger $logger
+     * @param \ShopGo\AramexShipping\Helper\Logger\Logger $logger
      * @param Security $xmlSecurity
      * @param \Magento\Shipping\Model\Simplexml\ElementFactory $xmlElFactory
      * @param \Magento\Shipping\Model\Rate\ResultFactory $rateFactory
@@ -54,7 +54,7 @@ class Standardshipping extends AbstractCarrierOnline implements \Magento\Shippin
     public function __construct(
         \Magento\Framework\App\Config\ScopeConfigInterface $scopeConfig,
         \Magento\Quote\Model\Quote\Address\RateResult\ErrorFactory $rateErrorFactory,
-        \Shopgo\AramexShipping\Helper\Logger\Logger $logger,
+        \ShopGo\AramexShipping\Helper\Logger\Logger $logger,
         Security $xmlSecurity,
         \Magento\Shipping\Model\Simplexml\ElementFactory $xmlElFactory,
         \Magento\Shipping\Model\Rate\ResultFactory $rateFactory,
@@ -70,7 +70,7 @@ class Standardshipping extends AbstractCarrierOnline implements \Magento\Shippin
         \Magento\Store\Model\StoreManagerInterface $storeManager,
         \Magento\Framework\Module\Dir\Reader $configReader,
         \Magento\Catalog\Model\ResourceModel\Product\CollectionFactory $productCollectionFactory,
-        \Shopgo\AramexShipping\Helper\Data $helper,
+        \ShopGo\AramexShipping\Helper\Data $helper,
         array $data = []
     ) {
         $this->directoryHelper           = $directoryData;
@@ -97,7 +97,7 @@ class Standardshipping extends AbstractCarrierOnline implements \Magento\Shippin
             $stockRegistry,
             $data
         );
-        $wsdlPath = $configReader->getModuleDir(Dir::MODULE_ETC_DIR, 'Shopgo_AramexShipping') . '/wsdl/';
+        $wsdlPath = $configReader->getModuleDir(Dir::MODULE_ETC_DIR, 'ShopGo_AramexShipping') . '/wsdl/';
         $this->_rateServiceWsdl = $wsdlPath . 'aramex-rates-calculator-wsdl.wsdl';
     }
 

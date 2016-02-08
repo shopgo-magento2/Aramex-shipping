@@ -11,7 +11,7 @@
                                 <item name="shipping-rates-validation" xsi:type="array">
                                     <item name="children" xsi:type="array">
                                         <item name="aramex-rates-validation" xsi:type="array">
-                                            <item name="component" xsi:type="string">Shopgo_AramexShipping/js/view/shipping-rates-validation</item>
+                                            <item name="component" xsi:type="string">ShopGo_AramexShipping/js/view/shipping-rates-validation</item>
                                         </item>
                                     </item>
                                 </item>

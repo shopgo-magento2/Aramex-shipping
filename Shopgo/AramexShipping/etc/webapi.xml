@@ -3,7 +3,7 @@
         xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Webapi:etc/webapi.xsd">
 
     <route url="/V1/carts/mine/estimate-shipping-methods" method="POST">
-        <service class="Shopgo\AramexShipping\Api\Data\Rewrite\AramexShippingMethodManagementInterface" method="estimateByAddress"/>
+        <service class="ShopGo\AramexShipping\Api\Data\Rewrite\AramexShippingMethodManagementInterface" method="estimateByAddress"/>
         <resources>
             <resource ref="self" />
         </resources>
@@ -23,13 +23,13 @@
 
     <!-- Managing Guest Cart Shipment Method -->
     <route url="/V1/guest-carts/:cartId/shipping-methods" method="GET">
-        <service class="Shopgo\AramexShipping\Api\Data\Rewrite\AramexGuestShippingMethodManagementInterface" method="getList"/>
+        <service class="ShopGo\AramexShipping\Api\Data\Rewrite\AramexGuestShippingMethodManagementInterface" method="getList"/>
         <resources>
             <resource ref="anonymous" />
         </resources>
     </route>
     <route url="/V1/guest-carts/:cartId/estimate-shipping-methods" method="POST">
-        <service class="Shopgo\AramexShipping\Api\Data\Rewrite\AramexGuestShippingMethodManagementInterface" method="aramexEstimateByAddress"/>
+        <service class="ShopGo\AramexShipping\Api\Data\Rewrite\AramexGuestShippingMethodManagementInterface" method="aramexEstimateByAddress"/>
         <resources>
             <resource ref="anonymous" />
         </resources>

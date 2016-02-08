@@ -1,6 +1,6 @@
 <?php
 
-namespace Shopgo\AramexShipping\Helper\Logger;
+namespace ShopGo\AramexShipping\Helper\Logger;
 
 use Monolog\Logger;
 

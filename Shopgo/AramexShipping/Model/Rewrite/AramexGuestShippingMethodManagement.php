@@ -1,13 +1,13 @@
 <?php
 
-namespace Shopgo\AramexShipping\Model\Rewrite;
+namespace ShopGo\AramexShipping\Model\Rewrite;
 
 use Magento\Quote\Api\ShippingMethodManagementInterface;
-use Shopgo\AramexShipping\Api\Data\Rewrite\AramexShippingMethodManagementInterface;
+use ShopGo\AramexShipping\Api\Data\Rewrite\AramexShippingMethodManagementInterface;
 use Magento\Quote\Model\QuoteIdMask;
 use Magento\Quote\Model\QuoteIdMaskFactory;
-use Shopgo\AramexShipping\Api\Data\Rewrite\AramexEstimateAddressInterface;
-use Shopgo\AramexShipping\Api\Data\Rewrite\AramexGuestShippingMethodManagementInterface;
+use ShopGo\AramexShipping\Api\Data\Rewrite\AramexEstimateAddressInterface;
+use ShopGo\AramexShipping\Api\Data\Rewrite\AramexGuestShippingMethodManagementInterface;
 use Magento\Quote\Model\GuestCart\GuestShippingMethodManagement;
 
 /**

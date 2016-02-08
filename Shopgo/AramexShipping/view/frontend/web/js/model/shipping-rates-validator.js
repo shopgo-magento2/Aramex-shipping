@@ -2,7 +2,7 @@ define(
     [
         'jquery',
         'mageUtils',
-        'Shopgo_AramexShipping/js/model/shipping-rates-validation-rules',
+        'ShopGo_AramexShipping/js/model/shipping-rates-validation-rules',
         'mage/translate'
     ],
     function ($, utils, validationRules, $t) {

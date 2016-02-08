@@ -52,7 +52,7 @@
                 
                 <field id="producttype" translate="label" type="select" sortOrder="9" showInDefault="1" showInWebsite="1" showInStore="1">
                     <label>Product Type</label>
-                    <source_model>Shopgo\AramexShipping\Model\System\Config\Source\Producttypes</source_model>
+                    <source_model>ShopGo\AramexShipping\Model\System\Config\Source\Producttypes</source_model>
                     <comment>
                        Note: Make sure you contact Aramex before changing the product type. Choosing the wrong type might result in errors
                     </comment>
@@ -61,7 +61,7 @@
 
                 <field id="aramex_account_checker" translate="label" type="button" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
                     <label>Check Account</label>
-                    <frontend_model>Shopgo\AramexShipping\Block\System\Config\Button\CheckAccountButton</frontend_model>
+                    <frontend_model>ShopGo\AramexShipping\Block\System\Config\Button\CheckAccountButton</frontend_model>
                     <depends> <field id="active">1</field> </depends>
                 </field>
 

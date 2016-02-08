@@ -1,6 +1,6 @@
 <?php
 
-namespace Shopgo\AramexShipping\Helper;
+namespace ShopGo\AramexShipping\Helper;
 
 use Magento\Framework\Module\Dir\Reader;
 use Magento\Framework\Module\Dir;
@@ -27,7 +27,7 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper
     {    
         parent::__construct($context, $scopeConfig);
 
-        $wsdlPath = $configReader->getModuleDir(Dir::MODULE_ETC_DIR, 'Shopgo_AramexShipping') . '/wsdl/';
+        $wsdlPath = $configReader->getModuleDir(Dir::MODULE_ETC_DIR, 'ShopGo_AramexShipping') . '/wsdl/';
         $this->_rateServiceWsdl = $wsdlPath . 'aramex-rates-calculator-wsdl.wsdl';
     }
 

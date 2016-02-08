@@ -3,7 +3,7 @@
  * Copyright © 2015 Magento. All rights reserved.
  * See COPYING.txt for license details.
  */
-namespace Shopgo\AramexShipping\Api\Data\Rewrite;
+namespace ShopGo\AramexShipping\Api\Data\Rewrite;
 
 /**
  * Shipping method management interface for guest carts.
@@ -28,7 +28,7 @@ interface AramexGuestShippingMethodManagementInterface
      * @param \Magento\Quote\Api\Data\EstimateAddressInterface $address The estimate address
      * @return \Magento\Quote\Api\Data\ShippingMethodInterface[] An array of shipping methods.
      */
-   // public function estimateByAddress($cartId, \Shopgo\AramexShipping\Api\Data\Rewrite\AramexEstimateAddressInterface $address);//\Magento\Quote\Api\Data\EstimateAddressInterface $address
+   // public function estimateByAddress($cartId, \ShopGo\AramexShipping\Api\Data\Rewrite\AramexEstimateAddressInterface $address);//\Magento\Quote\Api\Data\EstimateAddressInterface $address
 
     /**
      * Estimate shipping
