@@ -76,7 +76,10 @@
                     <source_model>Magento\Directory\Model\Config\Source\Country</source_model>
                     <comment>Note: All allowed countries are the countries selected from STORE > Configuration > GENERAL > General> Allow Countries</comment>
                     <can_be_empty>1</can_be_empty>
-                    <depends> <field id="active">1</field> </depends>
+                    <depends>
+                        <field id="active">1</field>
+                        <field id="sallowspecific">1</field>
+                    </depends>
                 </field>
                 <field id="showmethod" translate="label" type="select" sortOrder="15" showInDefault="1" showInWebsite="1" showInStore="0">
                     <label>Show Method if Not Applicable</label>
