@@ -168,8 +168,8 @@ class Standardshipping extends AbstractCarrierOnline implements \Magento\Shippin
         $destCountry = $request->getDestCountryId();
 
         $r->setDestCountry($this->_countryFactory->create()->load($destCountry)->getData('iso2_code'));
-        $r->setDestCity("Amman");
-        //$r->setDestCity($request->getDestCity());
+
+        $r->setDestCity($request->getDestCity());
 
         $r->setDestPostal($request->getDestPostcode());
 
@@ -216,7 +216,7 @@ class Standardshipping extends AbstractCarrierOnline implements \Magento\Shippin
                             'PostCode'              => $r->getDestPostal(),
                         ),
             'ShipmentDetails' => array(
-                            'PaymentType'            => 'C',
+                            'PaymentType'            => 'P',
                             'ProductGroup'           => $r->getProductGroup(),
                             'ProductType'            => $r->getProductType(),
                             'ActualWeight'           => array('Value' => $weight+1, 'Unit' => 'KG'),
