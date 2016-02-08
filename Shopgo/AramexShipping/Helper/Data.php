@@ -1,6 +1,6 @@
 <?php
 
-namespace Shopgo\AramexShipping\Helper
+namespace Shopgo\AramexShipping\Helper;
 
 use Magento\Framework\Module\Dir\Reader;
 use Magento\Framework\Module\Dir;
@@ -21,7 +21,7 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper
 
     public function __construct(
         \Magento\Framework\App\Helper\Context $context,
-        \Magento\Framework\App\Config\ScopeConfigInterface $scopeConfig
+        \Magento\Framework\App\Config\ScopeConfigInterface $scopeConfig,
         Reader $configReader
         )
     {    
