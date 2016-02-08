@@ -140,14 +140,14 @@ class Standardshipping extends AbstractCarrierOnline implements \Magento\Shippin
         $this->_request = $request;
         $this->setStore($request->getStoreId());
 
-        $r = new \Magento\Framework\DataObject();
+        $reqObject = new \Magento\Framework\DataObject();
         
-        $r->setUserName($this->getConfigData('username'));
-        $r->setPassword($this->getConfigData('password'));
-        $r->setAccountNumber($this->getConfigData('accountnumber'));
-        $r->setAccountEntity($this->getConfigData('accountentity'));
-        $r->setAccountPin($this->getConfigData('accountpin'));
-        $r->setAccountCountryCode($this->getConfigData('accountcountrycode'));
+        $reqObject->setUserName($this->getConfigData('username'));
+        $reqObject->setPassword($this->getConfigData('password'));
+        $reqObject->setAccountNumber($this->getConfigData('accountnumber'));
+        $reqObject->setAccountEntity($this->getConfigData('accountentity'));
+        $reqObject->setAccountPin($this->getConfigData('accountpin'));
+        $reqObject->setAccountCountryCode($this->getConfigData('accountcountrycode'));
 
         $origCountry = $this->_scopeConfig->getValue(
                         \Magento\Sales\Model\Order\Shipment::XML_PATH_STORE_COUNTRY_ID,
@@ -155,9 +155,9 @@ class Standardshipping extends AbstractCarrierOnline implements \Magento\Shippin
                         $request->getStoreId()
                      );
 
-        $r->setOrigCountry($this->_countryFactory->create()->load($origCountry)->getData('iso2_code'));
+        $reqObject->setOrigCountry($this->_countryFactory->create()->load($origCountry)->getData('iso2_code'));
 
-        $r->setOrigCity(
+        $reqObject->setOrigCity(
                 $this->_scopeConfig->getValue(
                     \Magento\Sales\Model\Order\Shipment::XML_PATH_STORE_CITY,
                     \Magento\Store\Model\ScopeInterface::SCOPE_STORE,
@@ -167,35 +167,35 @@ class Standardshipping extends AbstractCarrierOnline implements \Magento\Shippin
 
         $destCountry = $request->getDestCountryId();
 
-        $r->setDestCountry($this->_countryFactory->create()->load($destCountry)->getData('iso2_code'));
+        $reqObject->setDestCountry($this->_countryFactory->create()->load($destCountry)->getData('iso2_code'));
 
-        $r->setDestCity($request->getDestCity());
+        $reqObject->setDestCity($request->getDestCity());
 
-        $r->setDestPostal($request->getDestPostcode());
+        $reqObject->setDestPostal($request->getDestPostcode());
 
-        $r->setProductGroup('EXP');
-        $r->setProductType($this->getConfigData('producttype'));
+        $reqObject->setProductGroup('EXP');
+        $reqObject->setProductType($this->getConfigData('producttype'));
 
         
-        $this->setRawRequest($r);
+        $this->setRawRequest($reqObject);
 
         return $this;
     }
      public function buildAramexReq(){
 
-        $r      = $this->_rawRequest;
+        $reqObject      = $this->_rawRequest;
 
         $pices  = $this->getOrderInfo()[0];
         $weight = $this->getOrderInfo()[1];
 
         $params = array(
             'ClientInfo'  => array(
-                            'AccountCountryCode'    => $r->getAccountCountryCode(),
-                            'AccountEntity'         => $r->getAccountEntity(),
-                            'AccountNumber'         => $r->getAccountNumber(),
-                            'AccountPin'            => $r->getAccountPin(),
-                            'UserName'              => $r->getUserName(),
-                            'Password'              => $r->getPassword(),
+                            'AccountCountryCode'    => $reqObject->getAccountCountryCode(),
+                            'AccountEntity'         => $reqObject->getAccountEntity(),
+                            'AccountNumber'         => $reqObject->getAccountNumber(),
+                            'AccountPin'            => $reqObject->getAccountPin(),
+                            'UserName'              => $reqObject->getUserName(),
+                            'Password'              => $reqObject->getPassword(),
                             'Version'               => 'v1.0'
                         ),
                                     
@@ -205,20 +205,20 @@ class Standardshipping extends AbstractCarrierOnline implements \Magento\Shippin
                                     
             'OriginAddress' => array(
                             'Line1'                 => 'Originstreet',
-                            'City'                  => $r->getOrigCity(),
-                            'CountryCode'           => $r->getOrigCountry(),
+                            'City'                  => $reqObject->getOrigCity(),
+                            'CountryCode'           => $reqObject->getOrigCountry(),
                         ),
                                     
             'DestinationAddress' => array(
                             'Line1'                 => 'DestinationStree',
-                            'City'                  => $r->getDestCity(),
-                            'CountryCode'           => $r->getDestCountry(),
-                            'PostCode'              => $r->getDestPostal(),
+                            'City'                  => $reqObject->getDestCity(),
+                            'CountryCode'           => $reqObject->getDestCountry(),
+                            'PostCode'              => $reqObject->getDestPostal(),
                         ),
             'ShipmentDetails' => array(
                             'PaymentType'            => 'P',
-                            'ProductGroup'           => $r->getProductGroup(),
-                            'ProductType'            => $r->getProductType(),
+                            'ProductGroup'           => $reqObject->getProductGroup(),
+                            'ProductType'            => $reqObject->getProductType(),
                             'ActualWeight'           => array('Value' => $weight+1, 'Unit' => 'KG'),
                             'ChargeableWeight'       => array('Value' => $weight+1, 'Unit' => 'KG'),
                             'NumberOfPieces'         => $pices
