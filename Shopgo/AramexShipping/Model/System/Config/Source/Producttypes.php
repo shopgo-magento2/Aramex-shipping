@@ -7,7 +7,7 @@ use Magento\Framework\Option\ArrayInterface;
 class Producttypes implements ArrayInterface
 {
     const PDE  = "PDX";
-    const PCE  = "PCX";
+    const PCE  = "PPX";
     const PLE  = "PLX";
     const DDE  = "DDX";
     const DPE  = "DPX";
