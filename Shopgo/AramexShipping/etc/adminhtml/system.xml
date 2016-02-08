@@ -11,14 +11,17 @@
                 </field>
                 <field id="title" translate="label" type="text" sortOrder="2" showInDefault="1" showInWebsite="1" showInStore="1">
                     <label>Title</label>
+                    <tooltip>This is the method’s name that the customer will see in the checkout page.</tooltip>
                     <depends> <field id="active">1</field> </depends>
                 </field>
 
                 <field id="username" translate="label" type="text" sortOrder="3" showInDefault="1" showInWebsite="1" showInStore="1">
                     <label>User Name</label>
+                    <tooltip>Username, Password, Account's Country Code, Entity and Number You can get these values by contacting Aramex.</tooltip>
                     <depends> <field id="active">1</field> </depends>
                 </field>
                 <field id="password" translate="label comment" type="password" sortOrder="4" showInDefault="1" showInWebsite="1" showInStore="1">
+
                     <label>Password</label>
                     <comment>
                         <![CDATA[<a href="https://www.aramex.com/accounts/registration-signup.aspx" target="_blank"> Create your own Aramex account  </a>]]>
