@@ -1,6 +1,6 @@
 <?php
 
-namespace Shopgo\AramexShipping\Model\System\Config\Source;
+namespace ShopGo\AramexShipping\Model\System\Config\Source;
 
 use Magento\Framework\Option\ArrayInterface;
 

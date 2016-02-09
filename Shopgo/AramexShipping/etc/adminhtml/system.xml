@@ -75,7 +75,7 @@
 
                 <field id="unit_of_measure" translate="label comment" type="select" sortOrder="13" showInDefault="1" showInWebsite="1" showInStore="0">
                     <label>Weight Unit</label>
-                    <source_model>Shopgo\AramexShipping\Model\System\Config\Source\Unitofmeasure</source_model>
+                    <source_model>ShopGo\AramexShipping\Model\System\Config\Source\Unitofmeasure</source_model>
                     <depends> <field id="active">1</field> </depends>
                 </field>
                 <field id="specificerrmsg" translate="label" type="textarea" sortOrder="14" showInDefault="1" showInWebsite="1" showInStore="1">
