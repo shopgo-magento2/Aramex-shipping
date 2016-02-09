@@ -180,6 +180,8 @@ class Standardshipping extends AbstractCarrierOnline implements \Magento\Shippin
             $reqObject->setProductGroup('EXP');
             $reqObject->setProductType($this->getConfigData('producttype'));
         }
+
+        $reqObject->setUnitOfMeasure($this->getConfigData('unit_of_measure'));
         
         $this->setRawRequest($reqObject);
 
@@ -223,8 +225,8 @@ class Standardshipping extends AbstractCarrierOnline implements \Magento\Shippin
                             'PaymentType'            => 'P',
                             'ProductGroup'           => $reqObject->getProductGroup(),
                             'ProductType'            => $reqObject->getProductType(),
-                            'ActualWeight'           => array('Value' => $weight, 'Unit' => 'KG'),
-                            'ChargeableWeight'       => array('Value' => $weight, 'Unit' => 'KG'),
+                            'ActualWeight'           => array('Value' => $weight, 'Unit' => $reqObject->getUnitOfMeasure()),
+                            'ChargeableWeight'       => array('Value' => $weight, 'Unit' => $reqObject->getUnitOfMeasure()),
                             'NumberOfPieces'         => $pices
                         )
         );
