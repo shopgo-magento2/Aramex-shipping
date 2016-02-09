@@ -170,12 +170,16 @@ class Standardshipping extends AbstractCarrierOnline implements \Magento\Shippin
         $reqObject->setDestCountry($this->_countryFactory->create()->load($destCountry)->getData('iso2_code'));
 
         $reqObject->setDestCity($request->getDestCity());
-
         $reqObject->setDestPostal($request->getDestPostcode());
 
-        $reqObject->setProductGroup('EXP');
-        $reqObject->setProductType($this->getConfigData('producttype'));
-
+        if ($reqObject->getDestCountry() == $reqObject->getOrigCountry()){
+            $reqObject->setProductGroup('DOM');
+            $reqObject->setProductType($this->getConfigData('domesticproducttype'));
+        }
+        else{
+            $reqObject->setProductGroup('EXP');
+            $reqObject->setProductType($this->getConfigData('producttype'));
+        }
         
         $this->setRawRequest($reqObject);
 
