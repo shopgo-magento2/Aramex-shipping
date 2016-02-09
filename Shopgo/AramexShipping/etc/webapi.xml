@@ -12,7 +12,7 @@
         </data>
     </route>
     <route url="/V1/carts/mine/estimate-shipping-methods-by-address-id" method="POST">
-        <service class="Magento\Quote\Api\ShippingMethodManagementInterface" method="estimateByAddressId"/>
+        <service class="Magento\Quote\Api\ShippingMethodManagementInterface" method="aramexEstimateByAddressId"/>
         <resources>
             <resource ref="self" />
         </resources>
