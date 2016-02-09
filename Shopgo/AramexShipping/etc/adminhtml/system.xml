@@ -19,12 +19,12 @@
                     <depends> <field id="active">1</field> </depends>
                 </field>
 
-                <field id="username" translate="label" type="text" sortOrder="3" showInDefault="1" showInWebsite="1" showInStore="1">
+                <field id="username" translate="label" type="text" sortOrder="3" showInDefault="1" showInWebsite="1" showInStore="0">
                     <label>User Name</label>
                     <tooltip>Username, Password, Account's Country Code, Entity and Number You can get these values by contacting Aramex.</tooltip>
                     <depends> <field id="active">1</field> </depends>
                 </field>
-                <field id="password" translate="label comment" type="password" sortOrder="4" showInDefault="1" showInWebsite="1" showInStore="1">
+                <field id="password" translate="label comment" type="password" sortOrder="4" showInDefault="1" showInWebsite="1" showInStore="0">
 
                     <label>Password</label>
                     <comment>
@@ -33,15 +33,15 @@
                     <depends> <field id="active">1</field> </depends>
                 </field>
 
-                <field id="accountcountrycode" translate="label" type="text" sortOrder="5" showInDefault="1" showInWebsite="1" showInStore="1">
+                <field id="accountcountrycode" translate="label" type="text" sortOrder="5" showInDefault="1" showInWebsite="1" showInStore="0">
                     <label>Account Country Code</label>
                     <depends> <field id="active">1</field> </depends>
                 </field>
-                <field id="accountentity" translate="label" type="text" sortOrder="6" showInDefault="1" showInWebsite="1" showInStore="1">
+                <field id="accountentity" translate="label" type="text" sortOrder="6" showInDefault="1" showInWebsite="1" showInStore="0">
                     <label>Account Entity</label>
                     <depends> <field id="active">1</field> </depends>
                 </field>
-                <field id="accountnumber" translate="label" type="text" sortOrder="7" showInDefault="1" showInWebsite="1" showInStore="1">
+                <field id="accountnumber" translate="label" type="text" sortOrder="7" showInDefault="1" showInWebsite="1" showInStore="0">
                     <label>Account Number</label>
                     <depends> <field id="active">1</field> </depends>
                 </field>
@@ -50,7 +50,7 @@
                     <depends> <field id="active">1</field> </depends>
                 </field>
                 
-                <field id="producttype" translate="label" type="select" sortOrder="9" showInDefault="1" showInWebsite="1" showInStore="1">
+                <field id="producttype" translate="label" type="select" sortOrder="9" showInDefault="1" showInWebsite="1" showInStore="0">
                     <label>Product Type</label>
                     <source_model>ShopGo\AramexShipping\Model\System\Config\Source\Producttypes</source_model>
                     <comment>
@@ -58,7 +58,7 @@
                     </comment>
                     <depends> <field id="active">1</field> </depends>
                 </field>
-                <field id="domesticproducttype" translate="label" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                <field id="domesticproducttype" translate="label" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="0">
                     <label>Domestic Product Type</label>
                     <source_model>ShopGo\AramexShipping\Model\System\Config\Source\Domproducttypes</source_model>
                     <comment>
@@ -67,28 +67,28 @@
                     <depends> <field id="active">1</field> </depends>
                 </field>
 
-                <field id="aramex_account_checker" translate="label" type="button" sortOrder="11" showInDefault="1" showInWebsite="1" showInStore="1">
+                <field id="aramex_account_checker" translate="label" type="button" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="0">
                     <label>Check Account</label>
                     <frontend_model>ShopGo\AramexShipping\Block\System\Config\Button\CheckAccountButton</frontend_model>
                     <depends> <field id="active">1</field> </depends>
                 </field>
 
-                <field id="unit_of_measure" translate="label comment" type="select" sortOrder="13" showInDefault="1" showInWebsite="1" showInStore="0">
+                <field id="unit_of_measure" translate="label comment" type="select" sortOrder="12" showInDefault="1" showInWebsite="1" showInStore="0">
                     <label>Weight Unit</label>
                     <source_model>ShopGo\AramexShipping\Model\System\Config\Source\Unitofmeasure</source_model>
                     <depends> <field id="active">1</field> </depends>
                 </field>
-                <field id="specificerrmsg" translate="label" type="textarea" sortOrder="14" showInDefault="1" showInWebsite="1" showInStore="1">
+                <field id="specificerrmsg" translate="label" type="textarea" sortOrder="13" showInDefault="1" showInWebsite="1" showInStore="1">
                     <label>Displayed Error Message</label>
                     <depends> <field id="active">1</field> </depends>
                 </field>
-                <field id="sallowspecific" translate="label" type="select" sortOrder="15" showInDefault="1" showInWebsite="1" showInStore="0">
+                <field id="sallowspecific" translate="label" type="select" sortOrder="14" showInDefault="1" showInWebsite="1" showInStore="0">
                     <label>Ship to Applicable Countries</label>
                     <frontend_class>shipping-applicable-country</frontend_class>
                     <source_model>Magento\Shipping\Model\Config\Source\Allspecificcountries</source_model>
                     <depends> <field id="active">1</field> </depends>
                 </field>
-                <field id="specificcountry" translate="label" type="multiselect" sortOrder="16" showInDefault="1" showInWebsite="1" showInStore="0">
+                <field id="specificcountry" translate="label" type="multiselect" sortOrder="15" showInDefault="1" showInWebsite="1" showInStore="0">
                     <label>Ship to Specific Countries</label>
                     <source_model>Magento\Directory\Model\Config\Source\Country</source_model>
                     <comment>Note: All allowed countries are the countries selected from STORE > Configuration > GENERAL > General> Allow Countries</comment>
@@ -98,25 +98,25 @@
                         <field id="sallowspecific">1</field>
                     </depends>
                 </field>
-                <field id="showmethod" translate="label" type="select" sortOrder="17" showInDefault="1" showInWebsite="1" showInStore="0">
+                <field id="showmethod" translate="label" type="select" sortOrder="16" showInDefault="1" showInWebsite="1" showInStore="0">
                     <label>Show Method if Not Applicable</label>
                     <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
                     <depends> <field id="active">1</field> </depends>
                 </field>
 
-                <field id="debug" translate="label" type="select" sortOrder="18" showInDefault="1" showInWebsite="1" showInStore="0">
+                <field id="debug" translate="label" type="select" sortOrder="17" showInDefault="1" showInWebsite="1" showInStore="0">
                     <label>Debug</label>
                     <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
                     <depends> <field id="active">1</field> </depends>
                 </field>
 
-                <field id="link" translate="label" type="label" sortOrder="19" showInDefault="1" showInWebsite="1" showInStore="0">
+                <field id="link" translate="label" type="label" sortOrder="18" showInDefault="1" showInWebsite="1" showInStore="0">
                     <comment>
                         <![CDATA[<a href="http://shopgo.me/" target="_blank">Click here to check how to configure it</a>]]>
                     </comment>
                     <depends> <field id="active">1</field> </depends>
                 </field>
-                <field id="note" translate="label" type="label" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="0">
+                <field id="note" translate="label" type="label" sortOrder="19" showInDefault="1" showInWebsite="1" showInStore="0">
                     <comment>
                            Note: Shipping settings origin entries must be filled correctly, otherwise the extension will not function properly. You can modify them by going to STORES > Configuration > SALES > Shipping Settings > Origin"
                     </comment>
