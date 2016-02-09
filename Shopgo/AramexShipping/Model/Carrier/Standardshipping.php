@@ -223,8 +223,8 @@ class Standardshipping extends AbstractCarrierOnline implements \Magento\Shippin
                             'PaymentType'            => 'P',
                             'ProductGroup'           => $reqObject->getProductGroup(),
                             'ProductType'            => $reqObject->getProductType(),
-                            'ActualWeight'           => array('Value' => $weight+1, 'Unit' => 'KG'),
-                            'ChargeableWeight'       => array('Value' => $weight+1, 'Unit' => 'KG'),
+                            'ActualWeight'           => array('Value' => $weight, 'Unit' => 'KG'),
+                            'ChargeableWeight'       => array('Value' => $weight, 'Unit' => 'KG'),
                             'NumberOfPieces'         => $pices
                         )
         );
@@ -260,7 +260,7 @@ class Standardshipping extends AbstractCarrierOnline implements \Magento\Shippin
         $weight  = 0;
 
         foreach ($request->getAllItems() as $item) {
-            if ($item->getProduct()->isVirtual()) {
+            if ($item->getProduct()->isVirtual() || $item->getParentItem()) {
                 continue;
             }
             else{
