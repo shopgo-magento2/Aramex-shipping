@@ -67,7 +67,7 @@
                     <depends> <field id="active">1</field> </depends>
                 </field>
 
-                <field id="aramex_account_checker" translate="label" type="button" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="0">
+                <field id="aramex_account_checker" translate="label" type="button" sortOrder="21" showInDefault="1" showInWebsite="1" showInStore="0">
                     <label>Check Account</label>
                     <frontend_model>ShopGo\AramexShipping\Block\System\Config\Button\CheckAccountButton</frontend_model>
                     <depends> <field id="active">1</field> </depends>
@@ -109,14 +109,22 @@
                     <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
                     <depends> <field id="active">1</field> </depends>
                 </field>
+                <field id="aramexerrormessage" translate="label" type="select" sortOrder="18" showInDefault="1" showInWebsite="1" showInStore="0">
+                    <label>Show Aramex Error Message</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <depends>
+                        <field id="active">1</field>
+                        <field id="debug">1</field>
+                    </depends>
+                </field>
 
-                <field id="link" translate="label" type="label" sortOrder="18" showInDefault="1" showInWebsite="1" showInStore="0">
+                <field id="link" translate="label" type="label" sortOrder="19" showInDefault="1" showInWebsite="1" showInStore="0">
                     <comment>
                         <![CDATA[<a href="http://shopgo.me/" target="_blank">Click here to check how to configure it</a>]]>
                     </comment>
                     <depends> <field id="active">1</field> </depends>
                 </field>
-                <field id="note" translate="label" type="label" sortOrder="19" showInDefault="1" showInWebsite="1" showInStore="0">
+                <field id="note" translate="label" type="label" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="0">
                     <comment>
                            Note: Shipping settings origin entries must be filled correctly, otherwise the extension will not function properly. You can modify them by going to STORES > Configuration > SALES > Shipping Settings > Origin"
                     </comment>
