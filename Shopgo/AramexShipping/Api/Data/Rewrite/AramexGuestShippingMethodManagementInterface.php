@@ -25,15 +25,6 @@ interface AramexGuestShippingMethodManagementInterface
      * Estimate shipping
      *
      * @param string $cartId The shopping cart ID.
-     * @param \Magento\Quote\Api\Data\EstimateAddressInterface $address The estimate address
-     * @return \Magento\Quote\Api\Data\ShippingMethodInterface[] An array of shipping methods.
-     */
-   // public function estimateByAddress($cartId, \ShopGo\AramexShipping\Api\Data\Rewrite\AramexEstimateAddressInterface $address);//\Magento\Quote\Api\Data\EstimateAddressInterface $address
-
-    /**
-     * Estimate shipping
-     *
-     * @param string $cartId The shopping cart ID.
      * @param AramexEstimateAddressInterface $address The estimate address
      * @return \Magento\Quote\Api\Data\ShippingMethodInterface[] An array of shipping methods.
      */

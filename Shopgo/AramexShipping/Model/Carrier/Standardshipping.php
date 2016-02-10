@@ -12,18 +12,38 @@ use Magento\Framework\Xml\Security;
 
 class Standardshipping extends AbstractCarrierOnline implements \Magento\Shipping\Model\Carrier\CarrierInterface
 {
+
     const CODE = 'aramex';
 
+    /**
+     * @var string
+     */
     protected $_code = self::CODE;
 
+    /**
+     * Rate request data
+     *
+     * @var RateRequest|null
+     */
     protected $_request = null;
 
+    /**
+     * Rate result data
+     *
+     * @var Result|null
+     */
     protected $_result = null;
 
+    /**
+     * @var \Magento\Store\Model\StoreManagerInterface
+     */
     protected $_storeManager;
 
     protected $_productCollectionFactory;
 
+    /**
+     * @var string
+     */
     protected $_rateServiceWsdl;
 
     protected $directoryHelper;
@@ -101,20 +121,34 @@ class Standardshipping extends AbstractCarrierOnline implements \Magento\Shippin
         $this->_rateServiceWsdl = $wsdlPath . 'aramex-rates-calculator-wsdl.wsdl';
     }
 
+    /**
+     * Create  soap client
+     *
+     * @return \SoapClient
+     */
     protected function _createSoapClient($wsdl, $trace = false)
     {
         $client = new \SoapClient($wsdl, ['trace' => $trace]);
         return $client;
     }
 
+    /**
+     * Create rate soap client
+     *
+     * @return \RateSoapClient
+     */
     protected function _createRateSoapClient()
     {
         return $this->_createSoapClient($this->_rateServiceWsdl);
     }
 
+    /**
+     * @param RateRequest $request
+     * @return Result
+     */
     public function collectRates(RateRequest $request)
     {
-        if (!$this->canCollectRates()) {
+        if (!$this->canCollectRates()){
             return $this->getErrorMessage();
         }
 
@@ -127,13 +161,19 @@ class Standardshipping extends AbstractCarrierOnline implements \Magento\Shippin
         $rate       = $this->_rateFactory->create();
         $resultQuote = $this->_result;
 
-        if($resultQuote == false) {
+        if($resultQuote == false){
             return $this->failAramex($rate);
         }else{
             return $this->addAramexRate($rate, $resultQuote);
         }
     }
 
+    /**
+     * Prepare and set request to this instance
+     *
+     * @param RateRequest $request
+     * @return $this
+     */
     public function setRequest(\Magento\Framework\DataObject $request)
     {
 
@@ -187,7 +227,14 @@ class Standardshipping extends AbstractCarrierOnline implements \Magento\Shippin
 
         return $this;
     }
-     public function buildAramexReq(){
+
+    /**
+     * Prepare and set Aramex request array
+     *
+     * @return $params
+     */
+    public function buildAramexReq()
+    {
 
         $reqObject      = $this->_rawRequest;
 
@@ -233,19 +280,26 @@ class Standardshipping extends AbstractCarrierOnline implements \Magento\Shippin
             return $params;
     }
 
-    public function sendAramexReq($params){
+    /**
+     * Prepare and set Aramex request array
+     *
+     * @return $params
+     */
+    public function sendAramexReq($params)
+    {
 
-
-        if ($this->_helper->getDebugStatus())
+        if ($this->_helper->getDebugStatus()){
             $this->_logger->info(print_r($params,true));
+        }
 
         $client  = $this->_createRateSoapClient();
         $results = $client->CalculateRate($params);
 
-        if ($this->_helper->getDebugStatus())
+        if ($this->_helper->getDebugStatus()){
             $this->_logger->info(print_r($results,true));
+        }
 
-        if($results->HasErrors) {
+        if($results->HasErrors){
             $this->_result = false;
         }
         else{
@@ -254,15 +308,19 @@ class Standardshipping extends AbstractCarrierOnline implements \Magento\Shippin
         return $this;
     }
 
+    /**
+     * Get cart items details "weight and numnber of pieces"
+     *
+     * @return $array
+     */
     public function getOrderInfo()
     {
-
         $request = $this->_request;
         $pices   = 0;
         $weight  = 0;
 
-        foreach ($request->getAllItems() as $item) {
-            if ($item->getProduct()->isVirtual() || $item->getParentItem()) {
+        foreach ($request->getAllItems() as $item){
+            if ($item->getProduct()->isVirtual() || $item->getParentItem()){
                 continue;
             }
             else{
@@ -274,6 +332,12 @@ class Standardshipping extends AbstractCarrierOnline implements \Magento\Shippin
         return array($pices, $weight);
     }
 
+   /**
+     * Create faild carrier
+     *
+     * @param ResultFactory $result
+     * @return $result
+     */
     public function failAramex($result)
     {
         $error = $this->_rateErrorFactory->create();
@@ -287,8 +351,15 @@ class Standardshipping extends AbstractCarrierOnline implements \Magento\Shippin
         return $result;
     }
 
+    /**
+     * Create Aramex carrier
+     *
+     * @param ResultFactory $result
+     * @param Result        $resultQuote
+     * @return $result
+     */
     public function addAramexRate($result, $resultQuote)
-     {
+    {
          $rate  = $this->_rateMethodFactory->create();
          $price = $resultQuote->Value;
 

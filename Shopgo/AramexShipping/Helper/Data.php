@@ -31,17 +31,34 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper
         $this->_rateServiceWsdl = $wsdlPath . 'aramex-rates-calculator-wsdl.wsdl';
     }
 
+    /**
+     * Create soap client
+     *
+     * @return \SoapClient
+     */
     protected function _createSoapClient($wsdl, $trace = true)
     {
         $client = new \SoapClient($wsdl, ['trace' => $trace]);
         return $client;
     }
 
+    /**
+     * Create rate soap client
+     *
+     * @return \RateSoapClient
+     */
     protected function _createRateSoapClient()
     {
         return $this->_createSoapClient($this->_rateServiceWsdl);
     }
 
+    /**
+     * Convert between 2 currency
+     * @param  string $from     aramex currency code.
+     * @param  string $to       store currency code.
+     * @param  int    $ammount  shipping rate that aramex return it.
+     * @return int
+     */
     public function converCurrency($from, $to, $amount)
     {
         $url  = "https://www.google.com/finance/converter?a=$amount&from=$from&to=$to";
@@ -51,6 +68,11 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper
         return round($converted);
     }
 
+    /**
+     * Check if aramex debuging mode is enabled
+     *
+     * @return Bollean
+     */
     public function getDebugStatus()
     {
         return $this->scopeConfig->getValue(
@@ -59,6 +81,11 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper
         );
    }
 
+    /**
+     * Verfication Aramex Account
+     *
+     * @return string
+     */
     public function checkAccount()
     {
         $params = array(
