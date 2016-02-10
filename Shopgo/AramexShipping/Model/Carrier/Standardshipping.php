@@ -155,14 +155,15 @@ class Standardshipping extends AbstractCarrierOnline implements \Magento\Shippin
         $requestAramex = clone $request;
         $this->setRequest($requestAramex);
 
-        $params = $this->buildAramexReq();
-        $this->sendAramexReq($params);
+        $params         = $this->buildAramexReq();
+        $aramexResponse = $this->sendAramexReq($params);
 
-        $rate       = $this->_rateFactory->create();
-        $resultQuote = $this->_result;
+        $rate           = $this->_rateFactory->create();
+        $resultQuote    = $this->_result;
 
         if($resultQuote == false){
-            return $this->failAramex($rate);
+            $aramexErrorMessage = $aramexResponse->Notifications->Notification->Message;
+            return $this->failAramex($rate, $aramexErrorMessage);
         }else{
             return $this->addAramexRate($rate, $resultQuote);
         }
@@ -281,9 +282,9 @@ class Standardshipping extends AbstractCarrierOnline implements \Magento\Shippin
     }
 
     /**
-     * Prepare and set Aramex request array
-     *
-     * @return $params
+     * Send Aramex Rate Calculation request
+     * @param Array $param Aramex Request Array
+     * @return $Results
      */
     public function sendAramexReq($params)
     {
@@ -305,7 +306,7 @@ class Standardshipping extends AbstractCarrierOnline implements \Magento\Shippin
         else{
             $this->_result = $results->TotalAmount;
         }
-        return $this;
+        return $results;
     }
 
     /**
@@ -335,17 +336,23 @@ class Standardshipping extends AbstractCarrierOnline implements \Magento\Shippin
    /**
      * Create faild carrier
      *
-     * @param ResultFactory $result
+     * @param  ResultFactory $result
+     * @param  string $aramexErrorMessage
      * @return $result
      */
-    public function failAramex($result)
+    public function failAramex($result, $aramexErrorMessage)
     {
         $error = $this->_rateErrorFactory->create();
 
         $error->setCarrier($this->_code);
         $error->setCarrierTitle($this->getConfigData('title'));
-        $error->setErrorMessage($this->getConfigData('specificerrmsg'));
 
+        if ($this->getConfigData('showaramexerror') && ($this->_helper->getDebugStatus()){
+            $error->setErrorMessage($aramexErrorMessage);
+        }
+        else{
+            $error->setErrorMessage($this->getConfigData('specificerrmsg'));
+        }
         $result->append($error);
 
         return $result;
