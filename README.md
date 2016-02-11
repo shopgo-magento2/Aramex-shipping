@@ -16,35 +16,41 @@ Magento2 approach has changed a bit here, every field you need to get it you hav
 
 ## Re-Write”DI”: ##
 As we mentioned, the big challenge was how to get city field value from checkout page and the main steps:
-1- **Read city field and submit it from JS**.
 
-2- **Modify quote web API in order to get and set city**.
+**1- Read city field and submit it from JS.**
 
-3- **Add city value to estimate shipping methods**. 
+**2- Modify quote web API in order to get and set city.**
 
-1- **Read city field and submit it from JS:**
-To implement this step we should add city field as a required field with   shipping-rates-validation-rules.js and we should to rewrite all methods that read checkout page fields to add city value to them, so we should to rewrite :new-address.js and address-converter.js and add city field to address array.
+**3- Add city value to estimate shipping methods.** 
+************************************
+**1- Read city field and submit it from JS:**
+
+To implement this step we should add city field as a required field with   shipping-rates-validation-rules.js and we should to rewrite all methods that read checkout page fields to add city value to them, so we should to rewrite **new-address.js** and **address-converter.js** and add city field to address array.
 
 
 2- **Modify quote web API in order to get and set city:**
-By this step we’ll add two methods ”set/get(city)” to AramexEstimateAddressInterface.php and implement them in AramexEstimateAddress.php
 
+By this step we’ll add two methods ”set/get(city)” to **AramexEstimateAddressInterface** and implement them in **AramexEstimateAddress**
 
-3- **Add city value to estimate shipping methods:**
-By this step we should to Re-write all methods which JS call them to get estimate address shipping , so first of every thing we should to rewrite WebApi.xml file to make all calls redirect to Aramex not core methods, then we’ll Re-write ShippingMethodManagementInterface.php with the  implementation file ShippingMethodManagement.php, 
-the previous file was for registered clients so for guest will Re-write GuestShippingMethodManagementInterface.php with implementation file GuestShippingMethodManagement.php
+ 
+**3- Add city value to estimate shipping methods:**
+
+By this step we should to Re-write all methods which JS call them to get estimate address shipping , so first of every thing we should to rewrite **WebApi** file to make all calls redirect to Aramex not core methods, then we’ll Re-write **ShippingMethodManagementInterface** with the  implementation file **ShippingMethodManagement**, 
+the previous file was for registered clients so for guest will Re-write **GuestShippingMethodManagementInterface** with implementation file **GuestShippingMethodManagement**
 
 
 
 ## Installtion: ##
-1- Clone the Aramex repository using either the HTTPS or SSH protocols.
-2- Create a directory for the advanced acl module and copy the cloned repository contents to it:
+**1-** Clone the Aramex repository using either the HTTPS or SSH protocols.
+
+**2-** Create a directory for the advanced acl module and copy the cloned repository contents to it:
    mkdir -p <your Magento install dir>/app/code/ShopGo/AramexShipping
     cp -R <AramexShipping clone dir>/* <your Magento install dir>/app/code/ShopGo/AramexShipping
 * 
-3- Run the following command:php <your Magento install dir>/bin/magento setup:upgrade
 
-4-Make sure to remove static files cache using this command:
+**3-** Run the following command:php <your Magento install dir>/bin/magento setup:upgrade
+
+**4-**Make sure to remove static files cache using this command:
 php <your Magento install dir>/bin/magento cache:flush
 
 
