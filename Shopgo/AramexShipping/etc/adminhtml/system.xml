@@ -21,7 +21,7 @@
 
                 <field id="username" translate="label" type="text" sortOrder="3" showInDefault="1" showInWebsite="1" showInStore="0">
                     <label>User Name</label>
-                    <tooltip>Username, Password, Account's Country Code, Entity and Number You can get these values by contacting Aramex.</tooltip>
+                    <tooltip>You can get the Username, Password, Account Country Code, Account Entity and Account PIN by contacting Aramex.</tooltip>
                     <depends> <field id="active">1</field> </depends>
                 </field>
                 <field id="password" translate="label comment" type="password" sortOrder="4" showInDefault="1" showInWebsite="1" showInStore="0">
@@ -86,12 +86,12 @@
                     <label>Ship to Applicable Countries</label>
                     <frontend_class>shipping-applicable-country</frontend_class>
                     <source_model>Magento\Shipping\Model\Config\Source\Allspecificcountries</source_model>
+                    <comment>Note: All allowed countries are the countries selected from STORE > Configuration > GENERAL > General> Allow Countries</comment>
                     <depends> <field id="active">1</field> </depends>
                 </field>
                 <field id="specificcountry" translate="label" type="multiselect" sortOrder="15" showInDefault="1" showInWebsite="1" showInStore="0">
                     <label>Ship to Specific Countries</label>
                     <source_model>Magento\Directory\Model\Config\Source\Country</source_model>
-                    <comment>Note: All allowed countries are the countries selected from STORE > Configuration > GENERAL > General> Allow Countries</comment>
                     <can_be_empty>1</can_be_empty>
                     <depends>
                         <field id="active">1</field>

@@ -25,7 +25,7 @@ class CheckAccountButton extends \Magento\Config\Block\System\Config\Form\Field
         )->setData(
             [
                 'id' => 'reset_to_default_button',
-                'label' => __('Account verification'),
+                'label' => __('Verify your account'),
                 'onclick' => 'javascript:checkAramexAccount(); return false;',
             ]
         );
