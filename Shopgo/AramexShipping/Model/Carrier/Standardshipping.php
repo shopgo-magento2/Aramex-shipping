@@ -347,7 +347,7 @@ class Standardshipping extends AbstractCarrierOnline implements \Magento\Shippin
         $error->setCarrier($this->_code);
         $error->setCarrierTitle($this->getConfigData('title'));
 
-        if ($this->getConfigData('showaramexerror') && ($this->_helper->getDebugStatus())){
+        if (($this->getConfigData('showaramexerror')) && ($this->_helper->getDebugStatus())){
             $error->setErrorMessage($aramexErrorMessage);
         }
         else{
