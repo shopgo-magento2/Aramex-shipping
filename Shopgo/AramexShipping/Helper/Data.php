@@ -59,7 +59,7 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper
      * @param  int    $amount  shipping rate that aramex return it.
      * @return int
      */
-    public function converCurrency($from, $to, $amount)
+    public function convertCurrency($from, $to, $amount)
     {
         $url  = "https://www.google.com/finance/converter?a=$amount&from=$from&to=$to";
         $data = file_get_contents($url);
