@@ -17,14 +17,6 @@ interface AramexEstimateAddressInterface extends CustomAttributesDataInterface
     /**#@+
      * Constants defined for keys of array, makes typos less likely
      */
-//    const KEY_COUNTRY_ID = 'country_id';
-//
-//    const KEY_REGION_ID = 'region_id';
-//
-//    const KEY_REGION = 'region';
-//
-//    const KEY_POSTCODE = 'postcode';
-
     const KEY_CITY = 'city';
 
     /**#@-*/
@@ -95,7 +87,7 @@ interface AramexEstimateAddressInterface extends CustomAttributesDataInterface
      *
      * @return string
      */
-    public function getCity();//emad
+    public function getCity();
 
     /**
      * Set city
@@ -103,8 +95,7 @@ interface AramexEstimateAddressInterface extends CustomAttributesDataInterface
      * @param string $city
      * @return $this
      */
-
-    public function setCity($city);//emad
+    public function setCity($city);
 
 
     /**

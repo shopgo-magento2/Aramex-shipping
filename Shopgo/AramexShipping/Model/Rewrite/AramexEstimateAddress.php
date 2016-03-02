@@ -101,7 +101,7 @@ class AramexEstimateAddress extends EstimateAddress implements AramexEstimateAdd
      *
      * @return string
      */
-    public function getCity()//emad
+    public function getCity()
     {
         return $this->getData(self::KEY_CITY);
     }
@@ -112,7 +112,7 @@ class AramexEstimateAddress extends EstimateAddress implements AramexEstimateAdd
      * @param string $city
      * @return $this
      */
-    public function setCity($city)//emad
+    public function setCity($city)
     {
         return $this->setData(self::KEY_CITY, $city);
     }
