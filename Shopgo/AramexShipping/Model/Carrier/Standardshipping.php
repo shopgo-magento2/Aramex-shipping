@@ -247,8 +247,8 @@ class Standardshipping extends AbstractCarrierOnline implements \Magento\Shippin
 
         $reqObject = $this->_rawRequest;
 
-        $qty    = $this->getOrderInfo()[0];
-        $weight = $this->getOrderInfo()[1];
+        $qty    = $this->getOrderInfo()['qty'];
+        $weight = $this->getOrderInfo()['weight'];
 
         $params = array(
             'ClientInfo'  => array(
@@ -338,7 +338,7 @@ class Standardshipping extends AbstractCarrierOnline implements \Magento\Shippin
             }
         }
 
-        return array($qty, $weight);
+        return array('qty' => $qty, 'weight' => $weight);
     }
 
    /**
