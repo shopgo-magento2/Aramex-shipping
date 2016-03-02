@@ -35,13 +35,6 @@ class Standardshipping extends AbstractCarrierOnline implements \Magento\Shippin
     protected $_result = null;
 
     /**
-     * @var \Magento\Store\Model\StoreManagerInterface
-     */
-    protected $_storeManager;
-
-    protected $_productCollectionFactory;
-
-    /**
      * @var string
      */
     protected $_rateServiceWsdl;
@@ -64,9 +57,7 @@ class Standardshipping extends AbstractCarrierOnline implements \Magento\Shippin
      * @param \Magento\Directory\Model\CurrencyFactory $currencyFactory
      * @param \Magento\Directory\Helper\Data $directoryData
      * @param \Magento\CatalogInventory\Api\StockRegistryInterface $stockRegistry
-     * @param \Magento\Store\Model\StoreManagerInterface $storeManager
      * @param \Magento\Framework\Module\Dir\Reader $configReader
-     * @param \Magento\Catalog\Model\ResourceModel\Product\CollectionFactory $productCollectionFactory
      * @param array $data
      *
      * @SuppressWarnings(PHPMD.ExcessiveParameterList)
@@ -87,17 +78,13 @@ class Standardshipping extends AbstractCarrierOnline implements \Magento\Shippin
         \Magento\Directory\Model\CurrencyFactory $currencyFactory,
         \Magento\Directory\Helper\Data $directoryData,
         \Magento\CatalogInventory\Api\StockRegistryInterface $stockRegistry,
-        \Magento\Store\Model\StoreManagerInterface $storeManager,
         \Magento\Framework\Module\Dir\Reader $configReader,
-        \Magento\Catalog\Model\ResourceModel\Product\CollectionFactory $productCollectionFactory,
         \ShopGo\AramexShipping\Helper\Data $helper,
         array $data = []
     ) {
         $this->directoryHelper           = $directoryData;
         $this->_helper                   = $helper;
         $this->_logger                   = $logger;
-        $this->_storeManager             = $storeManager;
-        $this->_productCollectionFactory = $productCollectionFactory;
 
         parent::__construct(
             $scopeConfig,
