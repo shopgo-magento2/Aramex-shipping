@@ -245,9 +245,9 @@ class Standardshipping extends AbstractCarrierOnline implements \Magento\Shippin
     public function buildAramexReq()
     {
 
-        $reqObject      = $this->_rawRequest;
+        $reqObject = $this->_rawRequest;
 
-        $pices  = $this->getOrderInfo()[0];
+        $qty    = $this->getOrderInfo()[0];
         $weight = $this->getOrderInfo()[1];
 
         $params = array(
@@ -283,7 +283,7 @@ class Standardshipping extends AbstractCarrierOnline implements \Magento\Shippin
                             'ProductType'            => $reqObject->getProductType(),
                             'ActualWeight'           => array('Value' => $weight, 'Unit' => $reqObject->getUnitOfMeasure()),
                             'ChargeableWeight'       => array('Value' => $weight, 'Unit' => $reqObject->getUnitOfMeasure()),
-                            'NumberOfPieces'         => $pices
+                            'NumberOfPieces'         => $qty
                         )
         );
             return $params;
@@ -318,14 +318,14 @@ class Standardshipping extends AbstractCarrierOnline implements \Magento\Shippin
     }
 
     /**
-     * Get cart items details "weight and numnber of pieces"
+     * Get cart items details "weight and number of pieces"
      *
      * @return $array
      */
     public function getOrderInfo()
     {
         $request = $this->_request;
-        $pices   = 0;
+        $qty     = 0;
         $weight  = 0;
 
         foreach ($request->getAllItems() as $item){
@@ -333,16 +333,16 @@ class Standardshipping extends AbstractCarrierOnline implements \Magento\Shippin
                 continue;
             }
             else{
-                $pices ++;
+                $qty++;
                 $weight += $item->getWeight()*$item->getQty();
             }
         }
 
-        return array($pices, $weight);
+        return array($qty, $weight);
     }
 
    /**
-     * Create faild carrier
+     * Create failed carrier
      *
      * @param  ResultFactory $result
      * @param  string $aramexErrorMessage
