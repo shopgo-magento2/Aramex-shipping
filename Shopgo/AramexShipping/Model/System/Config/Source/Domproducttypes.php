@@ -13,9 +13,9 @@ class Domproducttypes implements ArrayInterface
     public function toOptionArray()
     {
         return [
-            self::OND => __('OND'),
-            self::ONP => __('ONP'),
-            self::CDS => __('CDS')
+            self::OND => __('Overnight Document'),
+            self::ONP => __('Overnight Parcel'),
+            self::CDS => __('Credit Cards Delivery')
         ];
     }
 }

@@ -11,8 +11,8 @@ class Unitofmeasure implements ArrayInterface
     public function toOptionArray()
     {
         return [
-            self::KG => __('KGs'),
-            self::LB => __('LBs')
+            self::KG => __('Kilograms'),
+            self::LB => __('Pounds')
         ];
     }
 }
