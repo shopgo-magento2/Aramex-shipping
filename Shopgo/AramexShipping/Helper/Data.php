@@ -56,7 +56,7 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper
      * Convert between 2 currency
      * @param  string $from     aramex currency code.
      * @param  string $to       store currency code.
-     * @param  int    $ammount  shipping rate that aramex return it.
+     * @param  int    $amount  shipping rate that aramex return it.
      * @return int
      */
     public function converCurrency($from, $to, $amount)
@@ -71,7 +71,7 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper
     /**
      * Check if aramex debuging mode is enabled
      *
-     * @return Bollean
+     * @return Boolean
      */
     public function getDebugStatus()
     {
