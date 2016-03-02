@@ -104,30 +104,6 @@ class Standardshipping extends AbstractCarrierOnline implements \Magento\Shippin
             $stockRegistry,
             $data
         );
-        $wsdlPath = $configReader->getModuleDir(Dir::MODULE_ETC_DIR, 'ShopGo_AramexShipping') . '/wsdl/';
-        $this->_rateServiceWsdl = $wsdlPath . 'aramex-rates-calculator-wsdl.wsdl';
-    }
-
-    /**
-     * Create  soap client
-     *
-     * @return \SoapClient
-     */
-    protected function _createSoapClient($wsdl, $trace = false)
-    {
-        $client = new \SoapClient($wsdl, ['trace' => $trace]);
-        return $client;
-    }
-
-    /**
-     * Create rate soap client
-     *
-     * @return \RateSoapClient
-     */
-    protected function _createRateSoapClient()
-    {
-        return $this->_createSoapClient($this->_rateServiceWsdl);
-    }
 
     /**
      * @param RateRequest $request
@@ -288,7 +264,7 @@ class Standardshipping extends AbstractCarrierOnline implements \Magento\Shippin
             $this->_logger->info(print_r($params,true));
         }
 
-        $client  = $this->_createRateSoapClient();
+        $client  = $this->_helper->createRateSoapClient();
         $results = $client->CalculateRate($params);
 
         if ($this->_helper->getDebugStatus()){

@@ -47,7 +47,7 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper
      *
      * @return \RateSoapClient
      */
-    protected function _createRateSoapClient()
+    public function createRateSoapClient()
     {
         return $this->_createSoapClient($this->_rateServiceWsdl);
     }
@@ -125,7 +125,7 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper
             )
         );
 
-        $client  = $this->_createRateSoapClient();
+        $client  = $this->createRateSoapClient();
         $results = $client->CalculateRate($params);
 
         if($results->HasErrors)
