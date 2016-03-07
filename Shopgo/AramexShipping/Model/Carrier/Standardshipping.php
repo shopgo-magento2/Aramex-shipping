@@ -210,8 +210,10 @@ class Standardshipping extends AbstractCarrierOnline implements \Magento\Shippin
 
         $reqObject = $this->_rawRequest;
 
-        $qty    = $this->getOrderInfo()['qty'];
-        $weight = $this->getOrderInfo()['weight'];
+        $orderInfo = $this->getOrderInfo();
+
+        $qty    = $orderInfo['qty'];
+        $weight = $orderInfo['weight'];
 
         $params = array(
             'ClientInfo'  => array(
@@ -288,18 +290,9 @@ class Standardshipping extends AbstractCarrierOnline implements \Magento\Shippin
     public function getOrderInfo()
     {
         $request = $this->_request;
-        $qty     = 0;
-        $weight  = 0;
 
-        foreach ($request->getAllItems() as $item){
-            if ($item->getProduct()->isVirtual() || $item->getParentItem()){
-                continue;
-            }
-            else{
-                $qty++;
-                $weight += $item->getWeight()*$item->getQty();
-            }
-        }
+        $qty     = $request->getPackageQty();
+        $weight  = $request->getPackageWeight();
 
         return array('qty' => $qty, 'weight' => $weight);
     }
