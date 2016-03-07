@@ -125,15 +125,7 @@ class Standardshipping extends AbstractCarrierOnline implements \Magento\Shippin
         $resultQuote    = $this->_result;
 
         if($resultQuote == false){
-            if (count($aramexResponse->Notifications->Notification) >1 ){
-                $aramexErrorMessage = "";
-                foreach ($aramexResponse->Notifications->Notification as $error) {
-                    $aramexErrorMessage =  "//".$aramexErrorMessage.$error->Message."//";
-                }
-            }
-            else{
-                $aramexErrorMessage = $aramexResponse->Notifications->Notification->Message;
-            }
+            $aramexErrorMessage = $this->_helper->getServiceErrorMessages($aramexResponse->Notifications->Notification);
             return $this->failAramex($rate, $aramexErrorMessage);
         }else{
             return $this->addAramexRate($rate, $resultQuote);
