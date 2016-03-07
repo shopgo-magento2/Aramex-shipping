@@ -107,7 +107,7 @@ class Standardshipping extends AbstractCarrierOnline implements \Magento\Shippin
 
     /**
      * @param RateRequest $request
-     * @return Result
+     * @return Result|bool|null
      */
     public function collectRates(RateRequest $request)
     {
@@ -195,7 +195,7 @@ class Standardshipping extends AbstractCarrierOnline implements \Magento\Shippin
     /**
      * Prepare and set Aramex request array
      *
-     * @return $params
+     * @return array
      */
     public function buildAramexReq()
     {
@@ -249,7 +249,7 @@ class Standardshipping extends AbstractCarrierOnline implements \Magento\Shippin
     /**
      * Send Aramex Rate Calculation request
      * @param Array $param Aramex Request Array
-     * @return $Results
+     * @return array
      */
     public function sendAramexReq($params)
     {
@@ -294,7 +294,7 @@ class Standardshipping extends AbstractCarrierOnline implements \Magento\Shippin
      *
      * @param  ResultFactory $result
      * @param  string $aramexErrorMessage
-     * @return $result
+     * @return Result|bool|null
      */
     public function failAramex($result, $aramexErrorMessage)
     {
@@ -319,7 +319,7 @@ class Standardshipping extends AbstractCarrierOnline implements \Magento\Shippin
      *
      * @param ResultFactory $result
      * @param Result        $resultQuote
-     * @return $result
+     * @return Result|bool|null
      */
     public function addAramexRate($result, $resultQuote)
     {

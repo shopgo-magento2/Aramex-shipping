@@ -45,7 +45,7 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper
     /**
      * Create rate soap client
      *
-     * @return \RateSoapClient
+     * @return \SoapClient
      */
     public function createRateSoapClient()
     {
