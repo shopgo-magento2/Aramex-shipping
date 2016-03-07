@@ -354,7 +354,7 @@ class Standardshipping extends AbstractCarrierOnline implements \Magento\Shippin
 
     public function getAllowedMethods()
     {
-
+        return [$this->_code => $this->getConfigData('title')];
     }
 
     protected function _doShipmentRequest(\Magento\Framework\DataObject $request)
