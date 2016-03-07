@@ -79,7 +79,7 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper
             self::XML_PATH_DEBUG,
             \Magento\Store\Model\ScopeInterface::SCOPE_STORE
         );
-   }
+    }
 
     /**
      * Verfication Aramex Account
@@ -125,13 +125,36 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper
             )
         );
 
-        $client  = $this->createRateSoapClient();
-        $results = $client->CalculateRate($params);
+        $client     = $this->createRateSoapClient();
+        $soapResult = $client->CalculateRate($params);
 
-        if($results->HasErrors)
-            return "Invalid Account Parameter";
-        else
-            return "Success, Your Account is Valid";
+        $result  = 'Valid account information';
+
+        if ($soapResult == '[SoapFault]') {
+
+            $result ='Could not call service provider properly. If the issue presists, please report it to the extension author';
+        } elseif ($soapResult->HasErrors) {
+            $_message = $this->getServiceErrorMessages($soapResult->Notifications->Notification);
+            if (empty($_message)) {
+                $_message = 'Uknown error has occured. If the issue persists, please report it to the extension author';
+            }
+            $result = $_message;
+        }
+        return $result;
     }
 
+    public function getServiceErrorMessages($messages)
+    {
+        $message = '';
+
+        if (gettype($messages) == 'array') {
+            foreach ($messages as $msg) {
+                $message .= $msg->Message . "\n";
+            }
+        } else {
+            $message = $messages->Message;
+        }
+
+        return trim($message);
+    }
 }
