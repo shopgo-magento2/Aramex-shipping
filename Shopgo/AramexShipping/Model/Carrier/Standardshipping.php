@@ -207,42 +207,42 @@ class Standardshipping extends AbstractCarrierOnline implements \Magento\Shippin
         $qty    = $orderInfo['qty'];
         $weight = $orderInfo['weight'];
 
-        $params = array(
-            'ClientInfo'  => array(
-                            'AccountCountryCode'    => $reqObject->getAccountCountryCode(),
-                            'AccountEntity'         => $reqObject->getAccountEntity(),
-                            'AccountNumber'         => $reqObject->getAccountNumber(),
-                            'AccountPin'            => $reqObject->getAccountPin(),
-                            'UserName'              => $reqObject->getUserName(),
-                            'Password'              => $reqObject->getPassword(),
-                            'Version'               => 'v1.0'
-                        ),
+        $params = [
+            'ClientInfo'  => [
+                'AccountCountryCode' => $reqObject->getAccountCountryCode(),
+                'AccountEntity'      => $reqObject->getAccountEntity(),
+                'AccountNumber'      => $reqObject->getAccountNumber(),
+                'AccountPin'         => $reqObject->getAccountPin(),
+                'UserName'           => $reqObject->getUserName(),
+                'Password'           => $reqObject->getPassword(),
+                'Version'            => 'v1.0'
+            ],
                                     
-            'Transaction' => array(
-                            'Reference1'            => '001' 
-                        ),
+            'Transaction' => [
+                'Reference1' => '001'
+            ],
                                     
-            'OriginAddress' => array(
-                            'Line1'                 => 'Originstreet',
-                            'City'                  => $reqObject->getOrigCity(),
-                            'CountryCode'           => $reqObject->getOrigCountry(),
-                        ),
+            'OriginAddress' => [
+                'Line1'        => 'Originstreet',
+                'City'         => $reqObject->getOrigCity(),
+                'CountryCode'  => $reqObject->getOrigCountry(),
+            ],
                                     
-            'DestinationAddress' => array(
-                            'Line1'                 => 'DestinationStree',
-                            'City'                  => $reqObject->getDestCity(),
-                            'CountryCode'           => $reqObject->getDestCountry(),
-                            'PostCode'              => $reqObject->getDestPostal(),
-                        ),
-            'ShipmentDetails' => array(
-                            'PaymentType'            => 'P',
-                            'ProductGroup'           => $reqObject->getProductGroup(),
-                            'ProductType'            => $reqObject->getProductType(),
-                            'ActualWeight'           => array('Value' => $weight, 'Unit' => $reqObject->getUnitOfMeasure()),
-                            'ChargeableWeight'       => array('Value' => $weight, 'Unit' => $reqObject->getUnitOfMeasure()),
-                            'NumberOfPieces'         => $qty
-                        )
-        );
+            'DestinationAddress' => [
+                'Line1'        => 'DestinationStreet',
+                'City'         => $reqObject->getDestCity(),
+                'CountryCode'  => $reqObject->getDestCountry(),
+                'PostCode'     => $reqObject->getDestPostal(),
+            ],
+            'ShipmentDetails' => [
+                'PaymentType'       => 'P',
+                'ProductGroup'      => $reqObject->getProductGroup(),
+                'ProductType'       => $reqObject->getProductType(),
+                'ActualWeight'      => array('Value' => $weight, 'Unit' => $reqObject->getUnitOfMeasure()),
+                'ChargeableWeight'  => array('Value' => $weight, 'Unit' => $reqObject->getUnitOfMeasure()),
+                'NumberOfPieces'    => $qty
+            ]
+        ];
             return $params;
     }
 
