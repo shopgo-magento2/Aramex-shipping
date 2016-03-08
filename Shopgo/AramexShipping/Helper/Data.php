@@ -53,22 +53,6 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper
     }
 
     /**
-     * Convert between 2 currency
-     * @param  string $from     aramex currency code.
-     * @param  string $to       store currency code.
-     * @param  int    $amount  shipping rate that aramex return it.
-     * @return int
-     */
-    public function convertCurrency($from, $to, $amount)
-    {
-        $url  = "https://www.google.com/finance/converter?a=$amount&from=$from&to=$to";
-        $data = file_get_contents($url);
-        preg_match("/<span class=bld>(.*)<\/span>/",$data, $converted);
-        $converted = preg_replace("/[^0-9.]/", "", $converted[1]);
-        return round($converted);
-    }
-
-    /**
      * Check if aramex debuging mode is enabled
      *
      * @return Boolean

@@ -335,7 +335,10 @@ class Standardshipping extends AbstractCarrierOnline implements \Magento\Shippin
          $aramexCurrency = $resultQuote->CurrencyCode;
          $storeCurrency  = $this->directoryHelper->getBaseCurrencyCode();
 
-         $price          = $this->_helper->convertCurrency($aramexCurrency,$storeCurrency,$price);
+         $currency = $this->_currencyFactory->create();
+         $rates    = $currency->getCurrencyRates($storeCurrency, [$aramexCurrency]);
+
+         $price    = round($price/$rates[$aramexCurrency]);
         
          $rate->setCost($price);
          $rate->setPrice($price);
