@@ -18,7 +18,7 @@
                 }]
             };
         window.checkAramexAccount = function(){
-            $('body').append('<div class="aramex-popup"><?php echo $this->getAjaxCheckUrl() ?></div>');
+            $('body').append('<div class="aramex-popup"><?php echo $this->checkAccount() ?></div>');
             var popup = modal(options, $('.aramex-popup'));
             $('.aramex-popup').modal('openModal');
 
