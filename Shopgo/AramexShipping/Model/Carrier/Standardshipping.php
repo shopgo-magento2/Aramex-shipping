@@ -104,6 +104,7 @@ class Standardshipping extends AbstractCarrierOnline implements \Magento\Shippin
             $stockRegistry,
             $data
         );
+    }
 
     /**
      * @param RateRequest $request
