@@ -11,7 +11,8 @@
 ## Introduction: ##
 
 Aramex module was developed as an online shipping carrier, so the base model will extend from **AbstractCarrierOnline** instead of **AbstractCarrier** which usually used for the fixed shipping rate modules,
-In Aramex module we are working to gather all required information to ask Aramex providing us with shipping rate, Magento2 desined to send us "Country code, Zipcode" from checkout page without City value, and that’s good for non- **MENA** region, but in **MENA** we should to include city name instead of zip-code and that was the first challenge with Magento2
+In Aramex module we are working to gather all required information to ask Aramex providing us with shipping rate,
+Magento2 desined to send us "Country code, Zipcode" from checkout page without City value, and that’s good for non- **MENA** region, but in **MENA** we should to include city name instead of zip-code and that was the first challenge with Magento2
 so the big challenge here was how to get city value?
 
 ## Re-Write”DI”: ##
