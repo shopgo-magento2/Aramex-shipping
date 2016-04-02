@@ -46,15 +46,19 @@ the previous file was for registered clients so for guest will Re-write **GuestS
 
 **2-** Create a directory for the Aramex  shipping module and copy the cloned repository contents to it:
 ```
-   mkdir -p <your Magento install dir>/app/code/ShopGo/AramexShipping
-    cp -R <AramexShipping clone dir>/* <your Magento install dir>/app/code/ShopGo/AramexShipping
+mkdir -p <your Magento install dir>/app/code/ShopGo/AramexShipping
+cp -R <AramexShipping clone dir>/* <your Magento install dir>/app/code/ShopGo/AramexShipping
 ```
 
 **3-** Run the following command:
-```php <your Magento install dir>/bin/magento setup:upgrade```
+```
+php <your Magento install dir>/bin/magento setup:upgrade
+```
 
 **4-**Make sure to remove static files cache using this command:
-```php <your Magento install dir>/bin/magento cache:flush```
+```
+php <your Magento install dir>/bin/magento cache:flush
+```
 
 ## Contribution ##
 * Shopgo Team.
