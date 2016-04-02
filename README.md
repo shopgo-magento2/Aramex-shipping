@@ -24,7 +24,7 @@ To overcome getting city field value from checkout page:
 
 **3- Add city value to estimate shipping methods.** 
 ************************************
-![Re-write.png](https://bitbucket.org/repo/xzy8nb/images/1956314207-Re-write.png)
+![Re-writeAramex.png](https://bitbucket.org/repo/xzy8nb/images/2950141016-Re-writeAramex.png)
 **1- Read city field and submit it from JS:**
 
 To implement this step we should add city field as a required field with   shipping-rates-validation-rules.js and we should to rewrite all methods that read checkout page fields to add city value to them, so we should to rewrite **new-address.js** and **address-converter.js** and add city field to address array.
