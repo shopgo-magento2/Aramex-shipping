@@ -11,11 +11,11 @@
 ## Introduction: ##
 
 Aramex module was developed as an online shipping carrier, so the base model will extend from **AbstractCarrierOnline** instead of **AbstractCarrier** which usually used for the fixed shipping rate modules,
-In Aramex module we are working to gather all required information to ask Aramex providing us with shipping rate, the big challenge here was how to get all information from checkout page including Address fields”Country,Zipcode and City”,
-Magento2 approach has changed a bit here, every field you need to get it you have to send it via javascript, Magento2 was designed to send Country_id and zip-code only, and that’s good for non- **MENA** region, but in **MENA** we should to include city name instead of zip-code and that was the first challenge with Magento2,
+In Aramex module we are working to gather all required information to ask Aramex providing us with shipping rate, Magento2 desined to send us "Country code, Zipcode" from checkout page without City value, and that’s good for non- **MENA** region, but in **MENA** we should to include city name instead of zip-code and that was the first challenge with Magento2
+so the big challenge here was how to get city value?
 
 ## Re-Write”DI”: ##
-As we mentioned, the big challenge was how to get city field value from checkout page and the main steps:
+To overcome getting city field value from checkout page:
 
 **1- Read city field and submit it from JS.**
 
