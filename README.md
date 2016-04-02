@@ -10,7 +10,7 @@
 
 ## Introduction: ##
 
-Aramex module was depvelopment as an online shipping carrier, so the base model will extend from **AbstractCarrierOnline** instead of **AbstractCarrier** which usually used for the fixed shipping rate modules,
+Aramex module was developed as an online shipping carrier, so the base model will extend from **AbstractCarrierOnline** instead of **AbstractCarrier** which usually used for the fixed shipping rate modules,
 In Aramex module we are working to gather all required information to ask Aramex providing us with shipping rate, the big challenge here was how to get all information from checkout page including Address fields”Country,Zipcode and City”,
 Magento2 approach has changed a bit here, every field you need to get it you have to send it via javascript, Magento2 was designed to send Country_id and zip-code only, and that’s good for non- **MENA** region, but in **MENA** we should to include city name instead of zip-code and that was the first challenge with Magento2,
 
@@ -44,17 +44,18 @@ the previous file was for registered clients so for guest will Re-write **GuestS
 ## Installtion: ##
 **1-** Clone the Aramex repository using either the HTTPS or SSH protocols.
 
-**2-** Create a directory for the advanced acl module and copy the cloned repository contents to it:
+**2-** Create a directory for the Aramex  shipping module and copy the cloned repository contents to it:
+```
    mkdir -p <your Magento install dir>/app/code/ShopGo/AramexShipping
     cp -R <AramexShipping clone dir>/* <your Magento install dir>/app/code/ShopGo/AramexShipping
-* 
+```
 
-**3-** Run the following command:php <your Magento install dir>/bin/magento setup:upgrade
+**3-** Run the following command:
+```php <your Magento install dir>/bin/magento setup:upgrade```
 
 **4-**Make sure to remove static files cache using this command:
-php <your Magento install dir>/bin/magento cache:flush
-
+```php <your Magento install dir>/bin/magento cache:flush```
 
 ## Contribution ##
 * Shopgo Team.
-* info@shopgo.me
+* support@shopgo.me
